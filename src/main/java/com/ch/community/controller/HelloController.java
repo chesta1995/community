@@ -20,4 +20,9 @@ public class HelloController {
         model.addAttribute("name",name + "2");
         return "hello";
     }
+
+    @GetMapping("/index")
+    public String index () {
+        return "index";
+    }
 }
