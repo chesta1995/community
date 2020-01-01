@@ -11,7 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 /**
@@ -35,29 +36,34 @@ public class AuthorizeController {
 
     @Autowired
     private UserMapper userMapper;
+
     /**
      * 调用github登录回调
+     *
      * @return
      */
     @GetMapping("/callBack")
-    public String callBack(@RequestParam(name="code") String code, @RequestParam(name="state") String state, HttpServletRequest request) {
+    public String callBack(@RequestParam(name = "code") String code,
+                           @RequestParam(name = "state") String state,
+                           HttpServletResponse response) {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setClient_id(ClientId);
         accessTokenDTO.setClient_secret(ClientSecret);
         accessTokenDTO.setCode(code);
         accessTokenDTO.setRedirect_uri(RedirectUri);
         accessTokenDTO.setState(state);
-        String token = githubProvider.GetAccessToken(accessTokenDTO);
-        GithubUser githubUser = githubProvider.getUser(token);
+        String githubToken = githubProvider.GetAccessToken(accessTokenDTO);
+        GithubUser githubUser = githubProvider.getUser(githubToken);
         if (githubUser != null) {
             User user = new User();
-            user.setToken(UUID.randomUUID().toString());
+            String token = UUID.randomUUID().toString();
+            user.setToken(token);
             user.setName(githubUser.getName());
             user.setGmtCreat(System.currentTimeMillis());
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setGmtModified(user.getGmtCreat());
             userMapper.insert(user);
-            request.getSession().setAttribute("user",githubUser);
+            response.addCookie(new Cookie("token",token));
         }
         return "redirect:/";
     }

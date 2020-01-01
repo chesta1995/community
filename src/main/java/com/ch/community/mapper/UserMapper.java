@@ -3,6 +3,7 @@ package com.ch.community.mapper;
 import com.ch.community.model.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * @ClassName UserMapper
@@ -14,4 +15,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
     @Insert("INSERT INTO USER (NAME,ACCOUNT_ID,TOKEN,GMT_CREATE,GMT_MODIFIED) VALUES (#{name},#{accountId},#{token},#{gmtCreat},#{gmtModified})")
     void insert(User user);
+    @Select("SELECT * FROM USER WHERE TOKEN = #{token}")
+    User findUserByToken(String token);
 }
