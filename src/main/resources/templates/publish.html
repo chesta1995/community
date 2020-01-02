@@ -3,10 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>发布--麻将社区</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <script src="js/bootstrap.js" type="application/javascript"></script>
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <link rel="stylesheet" href="css/community.css">
 </head>
 <body>
@@ -49,21 +49,22 @@
         <div class="container-fluid">
             <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
             <hr/>
-            <form>
+            <form action="/publish" method="post">
                 <div class="form-group">
-                    <label for="problemTitle">问题标题</label>
-                    <input type="text" class="form-control" id="problemTitle" placeholder="问题标题">
+                    <label for="title">问题标题</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="问题标题" th:value="${title}">
                 </div>
                 <div class="form-group">
-                    <label for="problemAdd">问题补充</label>
-                    <textarea class="form-control" rows="10" id="problemAdd"></textarea>
+                    <label for="description">问题补充</label>
+                    <textarea class="form-control" rows="10" id="description" name="description" th:value="${description}"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="addTip">添加标签</label>
-                    <input type="text" class="form-control" id="addTip" placeholder="创建或搜索新话题">
+                    <label for="tag">添加标签</label>
+                    <input type="text" class="form-control" id="tag" name="tag" placeholder="创建或搜索新话题" th:value="${tag}">
                 </div>
+                <div class="alert alert-danger" role="alert" th:if="${error} != null" th:text="${error}"></div>
+                <button type="submit" class="btn btn-success publish-btn">发布</button>
             </form>
-            <button type="submit" class="btn btn-success publish-btn">发布</button>
         </div>
     </div>
     <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
