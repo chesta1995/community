@@ -1,15 +1,16 @@
-package com.ch.community.model;
+package com.ch.community.dto;
 
+import com.ch.community.model.User;
 import lombok.Data;
 
 /**
- * @ClassName Question
+ * @ClassName QuestionMapperDTO
  * @Description TODO
- * @Date 2020/1/2 0002 14:16
+ * @Date 2020/1/3 0003 14:40
  * @Created by Administrator
  */
 @Data
-public class Question {
+public class QuestionMapperDTO {
     private Integer id;
     private String title;
     private String description;
@@ -20,4 +21,5 @@ public class Question {
     private Integer commentCount;
     private Integer viewCount;
     private Integer likeCount;
+    private User user;
 }

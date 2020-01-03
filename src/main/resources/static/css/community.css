@@ -1,10 +1,22 @@
 .main {
-    margin:30px;
+    margin: 30px;
     background-color: #ffffff;
+    height: 600px;
 }
+
 body {
     background-color: #efefef;
 }
+
 .publish-btn {
     float: right;
+}
+
+.img-size {
+    height: 45px;
+    width: 45px;
+}
+
+.question-list {
+    margin-bottom: 15px;
 }

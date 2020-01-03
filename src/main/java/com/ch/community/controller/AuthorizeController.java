@@ -48,9 +48,9 @@ public class AuthorizeController {
                            HttpServletResponse response) {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setClient_id(ClientId);
-        accessTokenDTO.setClient_secret(ClientSecret);
+        accessTokenDTO.setClientSecret(ClientSecret);
         accessTokenDTO.setCode(code);
-        accessTokenDTO.setRedirect_uri(RedirectUri);
+        accessTokenDTO.setRedirectUri(RedirectUri);
         accessTokenDTO.setState(state);
         String githubToken = githubProvider.GetAccessToken(accessTokenDTO);
         GithubUser githubUser = githubProvider.getUser(githubToken);

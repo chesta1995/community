@@ -65,8 +65,8 @@ public class PublishController {
         question.setDescription(description);
         question.setCreator(String.valueOf(user.getId()));
         question.setTitle(title);
-        question.setGmt_create(System.currentTimeMillis());
-        question.setGmt_modified(question.getGmt_create());
+        question.setGmtCreate(System.currentTimeMillis());
+        question.setGmtModified(question.getGmtCreate());
         questionMapper.create(question);
         if (title == null || "".equals(title)) {
             model.addAttribute("error","未填写标题");
