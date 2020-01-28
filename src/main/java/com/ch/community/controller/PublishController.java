@@ -76,7 +76,6 @@ public class PublishController {
             model.addAttribute("error","未填写问题补充");
             return "publish";
         }
-
         return "redirect:/";
     }
 }

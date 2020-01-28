@@ -26,15 +26,15 @@ public class QuestionService {
     private UserMapper userMapper;
 
     public List<QuestionMapperDTO> findQuestionList() {
-        List<Question> questionList = questionMapper.findQuestionList();
-        List<QuestionMapperDTO> questionMapperDTOList = new ArrayList<>();
-        for (Question question : questionList) {
-            User user = userMapper.findUserById(question.getCreator());
-            QuestionMapperDTO questionMapperDTO = new QuestionMapperDTO();
-            BeanUtils.copyProperties(question, questionMapperDTO);
-            questionMapperDTO.setUser(user);
-            questionMapperDTOList.add(questionMapperDTO);
-        }
-        return questionMapperDTOList;
+        List<QuestionMapperDTO> questionList = questionMapper.findQuestionList();
+//        List<QuestionMapperDTO> questionMapperDTOList = new ArrayList<>();
+//        for (Question question : questionList) {
+//            User user = userMapper.findUserById(question.getCreator());
+//            QuestionMapperDTO questionMapperDTO = new QuestionMapperDTO();
+//            BeanUtils.copyProperties(question, questionMapperDTO);
+//            questionMapperDTO.setUser(user);
+//            questionMapperDTOList.add(questionMapperDTO);
+//        }
+        return questionList;
     }
 }

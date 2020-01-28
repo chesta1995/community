@@ -21,5 +21,8 @@ public class QuestionMapperDTO {
     private Integer commentCount;
     private Integer viewCount;
     private Integer likeCount;
-    private User user;
+    private String name;
+    private String accountId;
+    private String token;
+    private String avatarUrl;
 }
