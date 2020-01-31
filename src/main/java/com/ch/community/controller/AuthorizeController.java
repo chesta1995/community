@@ -30,7 +30,7 @@ public class AuthorizeController {
     @Value("${github.client.secret}")
     private String ClientSecret;
     @Value("${github.redirect.url}")
-    private String RedirectUri;
+    private String RedirectUrl;
     @Autowired
     private GithubProvider githubProvider;
 
@@ -47,10 +47,10 @@ public class AuthorizeController {
                            @RequestParam(name = "state") String state,
                            HttpServletResponse response) {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
-        accessTokenDTO.setClient_id(ClientId);
+        accessTokenDTO.setClientId(ClientId);
         accessTokenDTO.setClientSecret(ClientSecret);
         accessTokenDTO.setCode(code);
-        accessTokenDTO.setRedirectUri(RedirectUri);
+        accessTokenDTO.setRedirectUrl(RedirectUrl);
         accessTokenDTO.setState(state);
         String githubToken = githubProvider.GetAccessToken(accessTokenDTO);
         GithubUser githubUser = githubProvider.getUser(githubToken);
