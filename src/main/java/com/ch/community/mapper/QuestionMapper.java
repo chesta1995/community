@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Mapper
 public interface QuestionMapper {
-    @Insert("INSERT INTO QUESTION(TITLE, DESCRIPTION, GMT_CREATE, GMT_MODIFIED, CREATOR, TAG) VALUES (#{title},#{description},#{gmt_create},#{gmt_modified},#{creator},#{tag})")
+    @Insert("INSERT INTO QUESTION(TITLE, DESCRIPTION, GMT_CREATE, GMT_MODIFIED, CREATOR, TAG) VALUES (#{title},#{description},#{gmtCreate},#{gmtModified},#{creator},#{tag})")
     void create(Question question);
 
    @Select("SELECT * FROM QUESTION Q LEFT JOIN USER U ON Q.CREATOR = U.ID")
