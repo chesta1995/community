@@ -2,56 +2,63 @@ package com.ch.community.controller;
 
 import com.ch.community.Service.QuestionService;
 import com.ch.community.dto.QuestionMapperDTO;
-import com.ch.community.mapper.QuestionMapper;
 import com.ch.community.mapper.UserMapper;
-import com.ch.community.model.Question;
 import com.ch.community.model.User;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-/** @ClassName Hello @Description TODO @Date 2019/12/30 0030 14:56 @Created by Administrator */
 @Controller
-public class IndexController {
+public class ProfileController {
   @Autowired private UserMapper userMapper;
-
-  @Autowired private QuestionMapper questionMapper;
 
   @Autowired private QuestionService questionService;
 
-  @GetMapping("/")
-  public String index(
-      HttpServletRequest request,
+  @GetMapping("/profile/{action}")
+  public String profile(
+      @PathVariable(name = "action") String action,
       Model model,
+      HttpServletRequest request,
       @RequestParam(required = false, defaultValue = "1") int page,
       @RequestParam(required = false, defaultValue = "5") int rows) {
+    User user = null;
     Cookie[] cookies = request.getCookies();
     if (cookies != null) {
       for (Cookie cookie : cookies) {
         if ("token".equals(cookie.getName())) {
           String token = cookie.getValue();
-          User user = userMapper.findUserByToken(token);
+          user = userMapper.findUserByToken(token);
           if (user != null) {
             request.getSession().setAttribute("user", user);
           }
         }
       }
+    } else {
+      return "redirect:/";
     }
+    if ("question".equals(action)) {
+      model.addAttribute("selection", "question");
+      model.addAttribute("selectionName", "我的提问");
+    } else if ("replies".equals(action)) {
+      model.addAttribute("selection", "replies");
+      model.addAttribute("selectionName", "我的回复");
+    }
+
     PageHelper.startPage(page, rows);
-    List<QuestionMapperDTO> questionList = questionService.findQuestionList();
+    List<QuestionMapperDTO> questionList = questionService.findQuestionListById(user.getId());
     PageInfo<QuestionMapperDTO> pageInfo = new PageInfo<>(questionList);
 
     model.addAttribute("questionList", questionList);
     model.addAttribute("pageInfo", pageInfo);
-    return "index";
+    return "profile";
   }
 }

@@ -13,20 +13,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @ClassName QuestionService
- * @Description TODO
- * @Date 2020/1/3 0003 14:39
- * @Created by Administrator
+ * @ClassName QuestionService @Description TODO @Date 2020/1/3 0003 14:39 @Created by Administrator
  */
 @Service
 public class QuestionService {
-    @Autowired
-    private QuestionMapper questionMapper;
-    @Autowired
-    private UserMapper userMapper;
+  @Autowired private QuestionMapper questionMapper;
+  @Autowired private UserMapper userMapper;
 
-    public List<QuestionMapperDTO> findQuestionList() {
-        List<QuestionMapperDTO> questionList = questionMapper.findQuestionList();
-        return questionList;
-    }
+  public List<QuestionMapperDTO> findQuestionList() {
+    List<QuestionMapperDTO> questionList = questionMapper.findQuestionList();
+    return questionList;
+  }
+
+  public List<QuestionMapperDTO> findQuestionListById(Integer userId) {
+    List<QuestionMapperDTO> questionList = questionMapper.findQuestionListById(userId);
+    return questionList;
+  }
 }

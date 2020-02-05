@@ -9,16 +9,17 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
- * @ClassName QuestionMapper
- * @Description TODO
- * @Date 2020/1/2 0002 14:06
- * @Created by Administrator
+ * @ClassName QuestionMapper @Description TODO @Date 2020/1/2 0002 14:06 @Created by Administrator
  */
 @Mapper
 public interface QuestionMapper {
-    @Insert("INSERT INTO QUESTION(TITLE, DESCRIPTION, GMT_CREATE, GMT_MODIFIED, CREATOR, TAG) VALUES (#{title},#{description},#{gmtCreate},#{gmtModified},#{creator},#{tag})")
-    void create(Question question);
+  @Insert(
+      "INSERT INTO QUESTION(TITLE, DESCRIPTION, GMT_CREATE, GMT_MODIFIED, CREATOR, TAG) VALUES (#{title},#{description},#{gmtCreate},#{gmtModified},#{creator},#{tag})")
+  void create(Question question);
 
-   @Select("SELECT * FROM QUESTION Q LEFT JOIN USER U ON Q.CREATOR = U.ID")
-    List<QuestionMapperDTO> findQuestionList();
+  @Select("SELECT * FROM QUESTION Q LEFT JOIN USER U ON Q.CREATOR = U.ID")
+  List<QuestionMapperDTO> findQuestionList();
+
+  @Select("SELECT * FROM QUESTION Q LEFT JOIN USER U ON Q.CREATOR = U.ID WHERE CREATOR = #{userId}")
+  List<QuestionMapperDTO> findQuestionListById(Integer userId);
 }
