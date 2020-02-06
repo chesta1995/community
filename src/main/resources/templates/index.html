@@ -17,20 +17,22 @@
         <hr/>
         <div class="question-list" th:each="quest:${questionList}">
             <div class="media">
-                <div class="media-left">
-                    <a href="#">
-                        <img class="media-object img-size" th:src="${quest.avatarUrl}">
-                    </a>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading" th:text="${quest.title}"></h4>
-                    <span th:text="${quest.description}"></span>
-                    <br/>
-                    <span class="text-desc"><span th:text="${quest.commentCount}"></span>个回复•<span
-                            th:text="${quest.viewCount}"></span>次浏览<span
-                            th:text="${#dates.format(quest.gmtCreate,'dd MMMM yyyy')}"></span></span>
-                </div>
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object img-size" th:src="${quest.avatarUrl}">
+                </a>
             </div>
+            <div class="media-body">
+                <h4 class="media-heading" >
+                    <a th:href="@{'/question/' + ${quest.id}}" th:text="${quest.title}"></a>
+                </h4>
+                <span th:text="${quest.description}"></span>
+                <br/>
+                <span class="text-desc"><span th:text="${quest.commentCount}"></span>个回复•<span
+                        th:text="${quest.viewCount}"></span>次浏览<span
+                        th:text="${#dates.format(quest.gmtCreate,'dd MMMM yyyy')}"></span></span>
+            </div>
+        </div>
             <hr/>
         </div>
         <nav aria-label="Page navigation">

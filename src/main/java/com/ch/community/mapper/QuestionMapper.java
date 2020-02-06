@@ -22,4 +22,7 @@ public interface QuestionMapper {
 
   @Select("SELECT * FROM QUESTION Q LEFT JOIN USER U ON Q.CREATOR = U.ID WHERE CREATOR = #{userId}")
   List<QuestionMapperDTO> findQuestionListById(Integer userId);
+
+  @Select("SELECT * FROM QUESTION Q LEFT JOIN USER U ON Q.CREATOR = U.ID WHERE Q.ID = #{id}")
+  QuestionMapperDTO getQuestById(Integer id);
 }

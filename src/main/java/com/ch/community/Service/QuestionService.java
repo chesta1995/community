@@ -29,4 +29,9 @@ public class QuestionService {
     List<QuestionMapperDTO> questionList = questionMapper.findQuestionListById(userId);
     return questionList;
   }
+
+  public QuestionMapperDTO getQuestById(Integer id) {
+    QuestionMapperDTO questInfo = questionMapper.getQuestById(id);
+    return  questInfo;
+  }
 }
