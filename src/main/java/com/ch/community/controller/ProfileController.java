@@ -13,13 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
 public class ProfileController {
-  @Autowired private UserMapper userMapper;
 
   @Autowired private QuestionService questionService;
 
@@ -30,19 +28,8 @@ public class ProfileController {
       HttpServletRequest request,
       @RequestParam(required = false, defaultValue = "1") int page,
       @RequestParam(required = false, defaultValue = "5") int rows) {
-    User user = null;
-    Cookie[] cookies = request.getCookies();
-    if (cookies != null) {
-      for (Cookie cookie : cookies) {
-        if ("token".equals(cookie.getName())) {
-          String token = cookie.getValue();
-          user = userMapper.findUserByToken(token);
-          if (user != null) {
-            request.getSession().setAttribute("user", user);
-          }
-        }
-      }
-    } else {
+    User user = (User) request.getSession().getAttribute("user");
+    if (user == null) {
       return "redirect:/";
     }
     if ("question".equals(action)) {
