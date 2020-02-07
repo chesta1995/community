@@ -4,6 +4,7 @@ import com.ch.community.model.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * @ClassName UserMapper
@@ -19,6 +20,12 @@ public interface UserMapper {
     @Select("SELECT * FROM USER WHERE TOKEN = #{token}")
     User findUserByToken(String token);
 
-    @Select("SELECT * FROM USER WHERE id = #{id}")
+    @Select("SELECT * FROM USER WHERE ID = #{id}")
     User findUserById(String id);
+
+    @Select("SELECT count(*) FROM USER WHERE ACCOUNT_ID = #{accountId}")
+    Integer selectUserById(String accountId);
+
+    @Update("UPDATE USER SET TOKEN = #{token}")
+    void updateUser(User user);
 }
