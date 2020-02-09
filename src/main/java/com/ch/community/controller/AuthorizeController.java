@@ -4,6 +4,7 @@ import com.ch.community.dto.AccessTokenDTO;
 import com.ch.community.dto.GithubUser;
 import com.ch.community.mapper.UserMapper;
 import com.ch.community.model.User;
+import com.ch.community.model.UserExample;
 import com.ch.community.provider.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -59,15 +61,17 @@ public class AuthorizeController {
       String token = UUID.randomUUID().toString();
       user.setToken(token);
       user.setName(githubUser.getName());
-      user.setGmtCreat(System.currentTimeMillis());
+      user.setGmtCreate(System.currentTimeMillis());
       user.setAccountId(String.valueOf(githubUser.getId()));
-      user.setGmtModified(user.getGmtCreat());
+      user.setGmtModified(user.getGmtCreate());
       user.setAvatarUrl(githubUser.getAvatarUrl());
-      int haveUser = userMapper.selectUserById(user.getAccountId());
-      if (haveUser == 0) {
+      UserExample userExample = new UserExample();
+       userExample.createCriteria().andAccountIdEqualTo(user.getAccountId());
+      List<User> users = userMapper.selectByExample(userExample);
+      if (users.get(0) == null) {
         userMapper.insert(user);
       } else {
-        userMapper.updateUser(user);
+        userMapper.updateByPrimaryKey(user);
       }
       response.addCookie(new Cookie("token", token));
     }

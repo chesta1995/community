@@ -2,9 +2,6 @@ package com.ch.community.controller;
 
 import com.ch.community.Service.QuestionService;
 import com.ch.community.dto.QuestionMapperDTO;
-import com.ch.community.mapper.QuestionMapper;
-import com.ch.community.mapper.UserMapper;
-import com.ch.community.model.User;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;

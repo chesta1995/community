@@ -53,11 +53,11 @@ public class PublishController {
         Question question = new Question();
         question.setTag(tag);
         question.setDescription(description);
-        question.setCreator(String.valueOf(user.getId()));
+        question.setCreator(user.getId());
         question.setTitle(title);
         question.setGmtCreate(System.currentTimeMillis());
         question.setGmtModified(question.getGmtCreate());
-        questionMapper.create(question);
+        questionMapper.insert(question);
         if (title == null || "".equals(title)) {
             model.addAttribute("error","未填写标题");
             return "publish";
