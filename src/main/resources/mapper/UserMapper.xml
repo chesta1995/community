@@ -334,4 +334,7 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="findUserByToken" parameterType="com.ch.community.model.User" resultType="com.ch.community.model.User">
+    select * from User where Token = #{token}
+  </select>
 </mapper>

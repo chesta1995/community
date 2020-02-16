@@ -1,5 +1,6 @@
 package com.ch.community.Service;
 
+import com.ch.community.Exception.CustomizeException;
 import com.ch.community.dto.QuestionMapperDTO;
 import com.ch.community.mapper.QuestionMapper;
 import com.ch.community.mapper.UserMapper;
@@ -32,6 +33,9 @@ public class QuestionService {
 
   public QuestionMapperDTO getQuestById(Integer id) {
     QuestionMapperDTO questInfo = questionMapper.getQuestById(id);
-    return  questInfo;
+    if (questInfo.getId() == null) {
+      throw new CustomizeException("该问题不存在");
+    }
+    return questInfo;
   }
 }

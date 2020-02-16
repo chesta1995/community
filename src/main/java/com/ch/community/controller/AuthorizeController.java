@@ -1,5 +1,6 @@
 package com.ch.community.controller;
 
+import com.ch.community.Service.UserService;
 import com.ch.community.dto.AccessTokenDTO;
 import com.ch.community.dto.GithubUser;
 import com.ch.community.mapper.UserMapper;
@@ -38,6 +39,8 @@ public class AuthorizeController {
 
   @Autowired private UserMapper userMapper;
 
+  @Autowired private UserService userService;
+
   /**
    * 调用github登录回调
    *
@@ -61,18 +64,9 @@ public class AuthorizeController {
       String token = UUID.randomUUID().toString();
       user.setToken(token);
       user.setName(githubUser.getName());
-      user.setGmtCreate(System.currentTimeMillis());
       user.setAccountId(String.valueOf(githubUser.getId()));
-      user.setGmtModified(user.getGmtCreate());
       user.setAvatarUrl(githubUser.getAvatarUrl());
-      UserExample userExample = new UserExample();
-       userExample.createCriteria().andAccountIdEqualTo(user.getAccountId());
-      List<User> users = userMapper.selectByExample(userExample);
-      if (users.get(0) == null) {
-        userMapper.insert(user);
-      } else {
-        userMapper.updateByPrimaryKey(user);
-      }
+      userService.createOrUpdate(user);
       response.addCookie(new Cookie("token", token));
     }
     return "redirect:/";
