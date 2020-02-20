@@ -1,6 +1,6 @@
 package com.ch.community.controller;
 
-import com.ch.community.Service.QuestionService;
+import com.ch.community.service.QuestionService;
 import com.ch.community.dto.QuestionMapperDTO;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

@@ -1,6 +1,6 @@
 package com.ch.community.controller;
 
-import com.ch.community.Service.QuestionService;
+import com.ch.community.service.QuestionService;
 import com.ch.community.dto.QuestionMapperDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

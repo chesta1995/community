@@ -1,7 +1,7 @@
 package com.ch.community.controller;
 
 import com.ch.community.Exception.CustomizeErrorCode;
-import com.ch.community.Service.CommentService;
+import com.ch.community.service.CommentService;
 import com.ch.community.dto.CommentForm;
 import com.ch.community.dto.ResultDTO;
 import com.ch.community.model.Comment;
@@ -36,7 +36,7 @@ public class CommentController {
     comment.setGmtCreate(System.currentTimeMillis());
     comment.setGmtModified(System.currentTimeMillis());
     comment.setAccountId(user.getId());
-  //  commentService.insert(comment);
+    commentService.insert(comment);
 
     return ResultDTO.okof();
   }

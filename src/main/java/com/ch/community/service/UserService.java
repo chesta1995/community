@@ -1,4 +1,4 @@
-package com.ch.community.Service;
+package com.ch.community.service;
 
 import com.ch.community.mapper.UserMapper;
 import com.ch.community.model.User;

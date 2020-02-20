@@ -1,17 +1,13 @@
-package com.ch.community.Service;
+package com.ch.community.service;
 
 import com.ch.community.Exception.CustomizeErrorCode;
 import com.ch.community.Exception.CustomizeException;
 import com.ch.community.dto.QuestionMapperDTO;
 import com.ch.community.mapper.QuestionMapper;
 import com.ch.community.mapper.UserMapper;
-import com.ch.community.model.Question;
-import com.ch.community.model.User;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

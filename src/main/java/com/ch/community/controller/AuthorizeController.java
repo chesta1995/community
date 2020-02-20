@@ -1,11 +1,10 @@
 package com.ch.community.controller;
 
-import com.ch.community.Service.UserService;
+import com.ch.community.service.UserService;
 import com.ch.community.dto.AccessTokenDTO;
 import com.ch.community.dto.GithubUser;
 import com.ch.community.mapper.UserMapper;
 import com.ch.community.model.User;
-import com.ch.community.model.UserExample;
 import com.ch.community.provider.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.UUID;
 
 /**
