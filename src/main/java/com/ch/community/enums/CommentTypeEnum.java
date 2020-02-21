@@ -1,6 +1,4 @@
-package enums;
-
-import com.ch.community.model.Comment;
+package com.ch.community.enums;
 
 public enum CommentTypeEnum {
   QUESTION(1),

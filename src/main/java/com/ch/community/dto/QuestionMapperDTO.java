@@ -25,4 +25,5 @@ public class QuestionMapperDTO {
     private String accountId;
     private String token;
     private String avatarUrl;
+
 }
