@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Date 2020/1/1 0001 22:32
  * @Created by Administrator
  */
+
 @Controller
 public class PublishController {
     @Autowired
@@ -32,6 +33,15 @@ public class PublishController {
         return "publish";
     }
 
+    /**
+     * 问题发布
+     * @param title
+     * @param description
+     * @param tag
+     * @param request
+     * @param model
+     * @return
+     */
     @PostMapping("/publish")
     public String doPublish(
             @RequestParam(name = "title") String title,

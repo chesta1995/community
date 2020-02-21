@@ -21,6 +21,12 @@ public class CommentController {
 
   @Autowired private CommentService commentService;
 
+  /**
+   *评论功能
+   * @param commentForm
+   * @param request
+   * @return
+   */
   @ResponseBody
   @RequestMapping(value = "/comment", method = RequestMethod.POST)
   public Object post(@RequestBody CommentForm commentForm, HttpServletRequest request){

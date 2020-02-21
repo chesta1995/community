@@ -12,6 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class QuestionController {
     @Autowired
     QuestionService questionService;
+
+    /**
+     *
+     * @param id
+     * @param model
+     * @return
+     */
     @GetMapping("/question/{id}")
     public String question(@PathVariable(name = "id") Integer id,
                            Model model) {

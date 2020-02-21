@@ -6,7 +6,7 @@ import com.ch.community.mapper.CommentMapper;
 import com.ch.community.mapper.QuestionMapper;
 import com.ch.community.model.Comment;
 import com.ch.community.model.Question;
-import enums.CommentTypeEnum;
+import com.ch.community.enums.CommentTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
