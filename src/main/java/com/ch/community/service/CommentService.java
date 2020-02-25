@@ -9,12 +9,14 @@ import com.ch.community.model.Question;
 import enums.CommentTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CommentService {
   @Autowired private CommentMapper commentMapper;
   @Autowired private QuestionMapper questionMapper;
 
+  @Transactional
   public void insert(Comment comment) {
     if (comment.getParentId() == null || comment.getParentId() == 0) {
       throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);

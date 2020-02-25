@@ -18,5 +18,18 @@ body {
 }
 
 .question-list {
-    margin-bottom: 15px;
+    margin-bottom:15px;
+}
+
+.img-comment{
+    padding: 10px 0;
+}
+
+.text-comment{
+    margin-top: 10px;
+}
+
+.btn-comment{
+    margin-top: 15px;
+    float: right;
 }
