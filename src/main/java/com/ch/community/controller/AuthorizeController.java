@@ -3,7 +3,6 @@ package com.ch.community.controller;
 import com.ch.community.service.UserService;
 import com.ch.community.dto.AccessTokenDTO;
 import com.ch.community.dto.GithubUser;
-import com.ch.community.mapper.UserMapper;
 import com.ch.community.model.User;
 import com.ch.community.provider.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +34,13 @@ public class AuthorizeController {
 
   @Autowired private GithubProvider githubProvider;
 
-  @Autowired private UserMapper userMapper;
-
   @Autowired private UserService userService;
 
   /**
-   * 调用github登录回调
-   *
+   * github登陆回调
+   * @param code
+   * @param state
+   * @param response
    * @return
    */
   @GetMapping("/callBack")
@@ -70,6 +69,12 @@ public class AuthorizeController {
     return "redirect:/";
   }
 
+  /**
+   * 用户退出登陆
+   * @param request
+   * @param response
+   * @return
+   */
   @GetMapping("logout")
   public String logout(HttpServletRequest request, HttpServletResponse response) {
     request.getSession().removeAttribute("user");
