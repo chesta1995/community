@@ -32,9 +32,33 @@
             </div>
 
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div th:if="${session.user.getId() == question.creator}">
-                <a th:href="@{'/publish/' + ${question.id}}"><span class="glyphicon glyphicon-pencil"
-                                                                   aria-hidden="true"></span>编辑</a>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <a th:href="@{'/publish/'+${question.id}}" class="community-menu"
+                   th:if="${session.user != null && (session.user.getId() == question.creator)}">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true">编辑</span>
+                </a>
+            </div>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:each="comment : ${comments}">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object img-size" th:src="${comment.user.avatarUrl}">
+                    </a>
+                </div>
+                <div class="media-body img-comment">
+                    <h4 class="media-heading">
+                        <a th:text="${comment.user.name}"></a>
+                    </h4>
+                    <div>
+                        <span th:text="${comment.comment}"></span>
+                    </div>
+                    <div class="comment-icon">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                        <span class="glyphicon glyphicon-comment"></span>
+                        <span class="pull-right" th:text="${#dates.format(comment.gmtCreate,'dd MMMM yyyy')}"></span>
+
+                    </div>
+                </div>
             </div>
         </div>
         <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>

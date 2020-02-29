@@ -1,6 +1,7 @@
 package com.ch.community.controller;
 
 import com.ch.community.dto.QuestionMapperDTO;
+import com.ch.community.service.QuestionService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.ch.community.Service.QuestionService;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /** @ClassName Hello @Description TODO @Date 2019/12/30 0030 14:56 @Created by Administrator */
